@@ -1,0 +1,294 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#155eef">
+  <title>Track Order | Cash Deliver</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --blue: #155eef;
+      --dark: #0b3180;
+      --orange: #ffab36;
+      --text: #172033;
+      --muted: #697386;
+      --bg: #f6f8fd;
+      --border: #e7ebf3;
+      --green: #16834a;
+    }
+
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--bg); color: var(--text); font-family: Inter, Arial, sans-serif; }
+    a { text-decoration: none; color: inherit; }
+    button, input { font: inherit; }
+    .container { width: min(1050px, calc(100% - 32px)); margin: auto; }
+
+    .announcement { padding: 9px; text-align: center; background: var(--dark); color: white; font-size: 11px; }
+    .announcement strong { color: #ffd18b; }
+    header { background: white; box-shadow: 0 2px 12px #102d5c0c; }
+    .header-main { min-height: 76px; display: flex; justify-content: space-between; align-items: center; gap: 20px; }
+    .brand { display: flex; align-items: center; gap: 10px; }
+    .brand-icon { width: 44px; height: 44px; display: grid; place-items: center; border-radius: 14px; background: var(--blue); color: white; font-size: 24px; }
+    .brand-name { font-size: 22px; font-weight: 800; letter-spacing: -1px; }
+    .brand-name span { color: var(--blue); }
+    .tagline { display: block; margin-top: 2px; color: var(--muted); font-size: 9px; }
+    .header-links { display: flex; gap: 20px; align-items: center; font-size: 12px; font-weight: 700; }
+    .header-links a:hover { color: var(--blue); }
+
+    .breadcrumb { padding: 22px 0 12px; color: var(--muted); font-size: 12px; }
+    .breadcrumb a { color: var(--blue); }
+    .page-heading { margin: 8px 0 24px; }
+    .page-heading h1 { margin: 0; font-size: clamp(27px, 4vw, 36px); letter-spacing: -1px; }
+    .page-heading p { margin: 7px 0 0; color: var(--muted); font-size: 13px; }
+
+    .track-layout { display: grid; grid-template-columns: minmax(0, 1fr) 310px; gap: 22px; align-items: start; padding-bottom: 55px; }
+    .panel { background: white; border: 1px solid var(--border); border-radius: 17px; }
+    .panel-header { padding: 20px; border-bottom: 1px solid var(--border); }
+    .panel-header h2 { margin: 0; font-size: 16px; }
+    .panel-header p { margin: 5px 0 0; color: var(--muted); font-size: 11px; }
+    .track-form { display: flex; gap: 10px; padding: 20px; }
+    .track-form input { flex: 1; min-width: 0; padding: 13px; border: 1px solid #dce4f2; border-radius: 10px; outline-color: var(--blue); font-size: 12px; }
+    .btn { display: inline-flex; justify-content: center; align-items: center; gap: 8px; padding: 12px 17px; border: 0; border-radius: 10px; font-size: 12px; font-weight: 800; cursor: pointer; }
+    .btn-primary { color: white; background: var(--blue); }
+    .btn-light { color: var(--blue); background: #edf3ff; border: 1px solid #d8e4ff; }
+    .notice { margin: 0 20px 20px; padding: 13px; border-radius: 10px; background: #fff4e4; color: #76501d; font-size: 11px; line-height: 1.7; }
+    .track-result { display: none; padding: 20px; border-top: 1px solid var(--border); }
+    .result-title { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+    .result-title h3 { margin: 0; font-size: 17px; }
+    .result-title p { margin: 5px 0 0; color: var(--muted); font-size: 11px; }
+    .status-pill { display: inline-block; padding: 6px 9px; border-radius: 30px; background: #fff0d9; color: #8b5300; font-size: 10px; font-weight: 800; white-space: nowrap; }
+
+    .timeline { position: relative; margin: 25px 0 5px 8px; }
+    .timeline::before { content: ""; position: absolute; left: 13px; top: 15px; bottom: 25px; width: 2px; background: #e1e7f1; }
+    .timeline-step { position: relative; display: flex; gap: 15px; padding-bottom: 25px; }
+    .timeline-step:last-child { padding-bottom: 0; }
+    .step-icon { z-index: 1; flex-shrink: 0; width: 28px; height: 28px; display: grid; place-items: center; border: 2px solid #dce3ee; border-radius: 50%; background: white; color: #9aa5b7; font-size: 11px; }
+    .timeline-step.complete .step-icon { border-color: var(--green); background: var(--green); color: white; }
+    .timeline-step.current .step-icon { border-color: var(--blue); background: var(--blue); color: white; }
+    .step-content h4 { margin: 2px 0 4px; font-size: 12px; }
+    .step-content p { margin: 0; color: var(--muted); font-size: 11px; line-height: 1.6; }
+
+    .side-panel { padding: 20px; }
+    .side-panel h2 { margin: 0 0 15px; font-size: 16px; }
+    .info-row { display: flex; justify-content: space-between; gap: 15px; margin: 13px 0; font-size: 11px; }
+    .info-row span { color: var(--muted); }
+    .info-row strong { text-align: right; overflow-wrap: anywhere; }
+    .side-divider { height: 1px; background: var(--border); margin: 17px 0; }
+    .cod-card { padding: 13px; border-radius: 11px; background: #edf8f0; color: #166534; font-size: 11px; line-height: 1.7; }
+    .help-card { margin-top: 16px; padding: 17px; border: 1px solid var(--border); border-radius: 14px; background: white; }
+    .help-card h3 { margin: 0 0 7px; font-size: 13px; }
+    .help-card p { margin: 0 0 12px; color: var(--muted); font-size: 11px; line-height: 1.7; }
+    .empty-state { padding: 35px 20px; text-align: center; }
+    .empty-state .emoji { font-size: 42px; }
+    .empty-state h3 { margin: 9px 0 5px; font-size: 17px; }
+    .empty-state p { margin: 0; color: var(--muted); font-size: 12px; line-height: 1.7; }
+    .message { margin: 0 20px 20px; padding: 12px; border-radius: 10px; background: #edf3ff; color: #284777; font-size: 11px; line-height: 1.7; }
+
+    footer { padding: 25px 0; background: #091e49; color: white; }
+    .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 15px; flex-wrap: wrap; }
+    .footer-inner p { margin: 5px 0 0; color: #c0cce2; font-size: 11px; }
+    .footer-links { display: flex; flex-wrap: wrap; gap: 16px; color: #d4def1; font-size: 11px; }
+
+    @media (max-width: 780px) {
+      .track-layout { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 520px) {
+      .container { width: calc(100% - 22px); }
+      .header-main { min-height: 66px; gap: 10px; }
+      .brand-icon { width: 38px; height: 38px; font-size: 21px; }
+      .brand-name { font-size: 18px; }
+      .tagline { font-size: 8px; }
+      .header-links { gap: 11px; font-size: 10px; }
+      .track-form { padding: 14px; flex-direction: column; }
+      .track-form .btn { width: 100%; }
+      .panel-header { padding: 15px; }
+      .notice, .message { margin-left: 14px; margin-right: 14px; }
+      .track-result { padding: 15px; }
+      .result-title { flex-direction: column; }
+      .footer-inner { align-items: flex-start; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="announcement">📦 Order tracking · <strong>Cash on Delivery</strong></div>
+
+  <header>
+    <div class="container header-main">
+      <a class="brand" href="index.html">
+        <div class="brand-icon">🛒</div>
+        <div>
+          <div class="brand-name">Cash <span>Deliver</span></div>
+          <span class="tagline">Apki Local Shopping, Aapke Darwaze Tak</span>
+        </div>
+      </a>
+      <nav class="header-links">
+        <a href="index.html">⌂ Home</a>
+        <a href="shop.html">Shop</a>
+        <a href="cart.html">🛒 Cart</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="breadcrumb"><a href="index.html">Home</a> / Order Status</div>
+
+    <div class="page-heading">
+      <h1>Track Your Order 📦</h1>
+      <p>Check your order progress using your order reference.</p>
+    </div>
+
+    <div class="track-layout">
+      <div>
+        <section class="panel">
+          <div class="panel-header">
+            <h2>Find Your Order</h2>
+            <p>Enter the order reference provided by Cash Deliver.</p>
+          </div>
+
+          <form class="track-form" id="track-form">
+            <input id="order-reference" type="text" maxlength="40" placeholder="e.g. CD-1001" aria-label="Order reference" required>
+            <button class="btn btn-primary" type="submit">Track Order →</button>
+          </form>
+
+          <div class="notice">
+            <strong>Prototype notice:</strong> This website currently does not store real orders. The tracking form below only demonstrates the design and does not retrieve actual delivery information.
+          </div>
+
+          <div class="message" id="tracking-message" role="status" aria-live="polite">
+            No live tracking connection yet. Real order statuses will appear here after a secure backend and order-management system are connected.
+          </div>
+
+          <div class="track-result" id="track-result">
+            <div class="result-title">
+              <div>
+                <h3 id="result-heading">Order details</h3>
+                <p id="result-reference"></p>
+              </div>
+              <span class="status-pill" id="result-status">Demo only</span>
+            </div>
+
+            <div class="timeline">
+              <div class="timeline-step complete">
+                <div class="step-icon">✓</div>
+                <div class="step-content">
+                  <h4>Order Request</h4>
+                  <p>In a real store, your order request would be recorded here.</p>
+                </div>
+              </div>
+              <div class="timeline-step current">
+                <div class="step-icon">2</div>
+                <div class="step-content">
+                  <h4>Confirmation Pending</h4>
+                  <p>Product availability, final price and delivery area must be confirmed by the store.</p>
+                </div>
+              </div>
+              <div class="timeline-step">
+                <div class="step-icon">3</div>
+                <div class="step-content">
+                  <h4>Preparing Your Order</h4>
+                  <p>This step will update only when the store confirms and prepares the order.</p>
+                </div>
+              </div>
+              <div class="timeline-step">
+                <div class="step-icon">4</div>
+                <div class="step-content">
+                  <h4>Out for Delivery</h4>
+                  <p>Delivery progress will be shown after dispatch in a connected system.</p>
+                </div>
+              </div>
+              <div class="timeline-step">
+                <div class="step-icon">5</div>
+                <div class="step-content">
+                  <h4>Delivered</h4>
+                  <p>Cash is collected at delivery for a confirmed COD order.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel" style="margin-top:18px">
+          <div class="empty-state">
+            <div class="emoji">🛍️</div>
+            <h3>Still shopping?</h3>
+            <p>Browse our everyday household essentials and add products to your cart.</p>
+            <a class="btn btn-light" href="shop.html" style="margin-top:16px">Explore Products →</a>
+          </div>
+        </section>
+      </div>
+
+      <aside>
+        <section class="panel side-panel">
+          <h2>Order Information</h2>
+          <div class="info-row"><span>Payment</span><strong>Cash on Delivery</strong></div>
+          <div class="info-row"><span>Service area</span><strong>Pilkhuwa & Hapur selected localities</strong></div>
+          <div class="info-row"><span>Order status</span><strong>Not connected yet</strong></div>
+          <div class="side-divider"></div>
+          <div class="cod-card">
+            💵 <strong>Pay at your door</strong><br>
+            The planned payment method is cash upon delivery of a confirmed order. No online payment is accepted on this prototype.
+          </div>
+        </section>
+
+        <section class="help-card">
+          <h3>Need help?</h3>
+          <p>For now, order tracking is a visual demo. Contact details can be added here once your customer-support phone number or email is ready.</p>
+          <a class="btn btn-light" href="contact.html">Contact Page →</a>
+        </section>
+      </aside>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <div>
+        <strong>Cash Deliver</strong>
+        <p>Apki Local Shopping, Aapke Darwaze Tak.</p>
+      </div>
+      <nav class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="shop.html">Shop</a>
+        <a href="cart.html">Cart</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script>
+    const form = document.getElementById("track-form");
+    const referenceInput = document.getElementById("order-reference");
+    const result = document.getElementById("track-result");
+    const message = document.getElementById("tracking-message");
+
+    form.addEventListener("submit", event => {
+      event.preventDefault();
+
+      const reference = referenceInput.value.trim();
+
+      if (reference.length < 3) {
+        message.textContent = "Please enter a valid order reference.";
+        result.style.display = "none";
+        return;
+      }
+
+      document.getElementById("result-heading").textContent = "Tracking preview";
+      document.getElementById("result-reference").textContent = "Reference entered: " + reference;
+      document.getElementById("result-status").textContent = "Demo only";
+      result.style.display = "block";
+
+      message.textContent =
+        "This is only a preview. The reference has not been checked against a database, and no real order status has been retrieved. Connect the secure order backend to enable actual tracking.";
+
+      result.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    });
+  </script>
+</body>
+</html>
+```

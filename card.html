@@ -1,0 +1,354 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#155eef">
+  <title>My Shopping Cart | Cash Deliver</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --blue: #155eef;
+      --dark: #0b3180;
+      --orange: #ffab36;
+      --text: #172033;
+      --muted: #697386;
+      --bg: #f6f8fd;
+      --border: #e7ebf3;
+      --green: #16834a;
+      --red: #c43232;
+    }
+
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: Inter, Arial, sans-serif; color: var(--text); background: var(--bg); }
+    a { text-decoration: none; color: inherit; }
+    button { font: inherit; cursor: pointer; }
+    .container { width: min(1150px, calc(100% - 32px)); margin: auto; }
+
+    .announcement { background: var(--dark); color: white; text-align: center; padding: 9px; font-size: 11px; }
+    .announcement strong { color: #ffd18b; }
+    header { background: white; box-shadow: 0 2px 12px #102d5c0c; }
+    .header-main { min-height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+    .brand { display: flex; align-items: center; gap: 10px; }
+    .brand-icon { width: 44px; height: 44px; display: grid; place-items: center; border-radius: 14px; background: var(--blue); color: white; font-size: 24px; }
+    .brand-name { font-size: 22px; font-weight: 800; letter-spacing: -1px; }
+    .brand-name span { color: var(--blue); }
+    .tagline { display: block; margin-top: 2px; color: var(--muted); font-size: 9px; }
+    .header-links { display: flex; align-items: center; gap: 20px; font-size: 13px; font-weight: 600; }
+    .header-links a:hover { color: var(--blue); }
+    .cart-count { display: inline-grid; place-items: center; min-width: 20px; height: 20px; padding: 0 5px; border-radius: 20px; background: var(--orange); font-size: 11px; }
+
+    .breadcrumb { padding: 23px 0 12px; color: var(--muted); font-size: 12px; }
+    .breadcrumb a { color: var(--blue); }
+    .page-heading { margin: 7px 0 25px; }
+    .page-heading h1 { margin: 0; font-size: clamp(27px, 4vw, 36px); letter-spacing: -1px; }
+    .page-heading p { margin: 7px 0 0; color: var(--muted); font-size: 13px; }
+
+    .cart-layout { display: grid; grid-template-columns: minmax(0, 1fr) 350px; align-items: start; gap: 22px; padding-bottom: 55px; }
+    .cart-panel, .summary-panel { background: white; border: 1px solid var(--border); border-radius: 17px; }
+    .panel-heading { padding: 20px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+    .panel-heading h2 { margin: 0; font-size: 16px; }
+    .item-count { color: var(--muted); font-size: 11px; }
+
+    .cart-item { display: grid; grid-template-columns: 90px minmax(0, 1fr) auto; gap: 15px; align-items: center; padding: 19px; border-bottom: 1px solid #edf0f6; }
+    .cart-item:last-child { border-bottom: 0; }
+    .item-image { width: 90px; height: 90px; display: grid; place-items: center; border-radius: 13px; background: #eef3ff; font-size: 38px; }
+    .cart-item:nth-child(even) .item-image { background: #fff2df; }
+    .item-category { color: var(--blue); text-transform: uppercase; font-size: 9px; font-weight: 800; letter-spacing: .6px; }
+    .item-name { margin: 4px 0; font-size: 14px; line-height: 1.45; }
+    .item-price { font-size: 13px; font-weight: 700; }
+    .quantity-row { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; margin-top: 10px; }
+    .quantity-control { display: inline-flex; align-items: center; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+    .quantity-control button { width: 31px; height: 30px; border: 0; background: #f7f9fd; color: var(--text); }
+    .quantity-control button:disabled { color: #b4bdcb; cursor: not-allowed; }
+    .quantity-value { min-width: 30px; text-align: center; font-size: 12px; font-weight: 700; }
+    .remove-button { border: 0; padding: 5px 0; background: transparent; color: var(--red); font-size: 11px; font-weight: 600; }
+    .item-total { align-self: center; text-align: right; font-size: 14px; font-weight: 800; white-space: nowrap; }
+
+    .empty-cart { padding: 45px 20px; text-align: center; }
+    .empty-cart .empty-icon { font-size: 56px; }
+    .empty-cart h2 { margin: 12px 0 5px; font-size: 21px; }
+    .empty-cart p { margin: 0 0 20px; color: var(--muted); font-size: 13px; }
+    .btn { display: inline-flex; justify-content: center; align-items: center; gap: 8px; padding: 12px 18px; border: 0; border-radius: 10px; font-size: 12px; font-weight: 800; }
+    .btn-primary { color: white; background: var(--blue); box-shadow: 0 5px 14px #155eef25; }
+    .btn-light { color: var(--blue); background: #edf3ff; border: 1px solid #d8e4ff; }
+
+    .summary-panel { padding: 20px; position: sticky; top: 18px; }
+    .summary-panel h2 { margin: 0 0 17px; font-size: 17px; }
+    .summary-row { display: flex; align-items: flex-start; justify-content: space-between; gap: 15px; margin: 13px 0; color: #536076; font-size: 12px; }
+    .summary-row strong { color: var(--text); text-align: right; }
+    .summary-row.total { padding-top: 15px; border-top: 1px solid var(--border); color: var(--text); font-size: 15px; font-weight: 800; }
+    .summary-row.total strong { color: var(--blue); font-size: 20px; }
+    .delivery-note { padding: 12px; border-radius: 10px; background: #fff4e4; color: #76501d; font-size: 11px; margin: 16px 0; }
+    .cod-note { padding: 12px; border-radius: 10px; background: #edf8f0; color: #166534; font-size: 11px; margin: 12px 0 18px; }
+    .checkout-button { width: 100%; margin-top: 5px; }
+    .continue-link { display: block; text-align: center; margin-top: 14px; color: var(--blue); font-size: 12px; font-weight: 700; }
+    .secure-note { text-align: center; margin: 15px 0 0; color: var(--muted); font-size: 10px; }
+
+    footer { background: #091e49; color: white; padding: 25px 0; }
+    .footer-inner { display: flex; justify-content: space-between; align-items: center; gap: 15px; flex-wrap: wrap; }
+    .footer-inner p { margin: 4px 0 0; color: #c0cce2; font-size: 11px; }
+    .footer-links { display: flex; gap: 16px; flex-wrap: wrap; color: #d4def1; font-size: 11px; }
+
+    @media (max-width: 800px) {
+      .cart-layout { grid-template-columns: 1fr; }
+      .summary-panel { position: static; }
+    }
+    @media (max-width: 500px) {
+      .container { width: calc(100% - 22px); }
+      .header-main { min-height: 66px; gap: 10px; }
+      .brand-icon { width: 38px; height: 38px; font-size: 21px; }
+      .brand-name { font-size: 18px; }
+      .header-links { gap: 10px; font-size: 11px; }
+      .tagline { font-size: 8px; }
+      .cart-item { grid-template-columns: 68px minmax(0, 1fr); gap: 12px; padding: 14px 11px; }
+      .item-image { width: 68px; height: 74px; font-size: 31px; }
+      .item-name { font-size: 12px; }
+      .item-total { grid-column: 2; text-align: left; margin-top: -5px; }
+      .panel-heading { padding: 15px; }
+      .summary-panel { padding: 17px; }
+      .footer-inner { align-items: flex-start; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="announcement">🛍️ Local shopping made simple · <strong>Cash on Delivery</strong></div>
+
+  <header>
+    <div class="container header-main">
+      <a class="brand" href="index.html">
+        <div class="brand-icon">🛒</div>
+        <div>
+          <div class="brand-name">Cash <span>Deliver</span></div>
+          <span class="tagline">Apki Local Shopping, Aapke Darwaze Tak</span>
+        </div>
+      </a>
+
+      <nav class="header-links">
+        <a href="index.html">⌂ Home</a>
+        <a href="shop.html">Shop</a>
+        <a href="cart.html">🛒 Cart <span class="cart-count" id="cart-count">0</span></a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="breadcrumb"><a href="index.html">Home</a> / <a href="shop.html">Shop</a> / My Cart</div>
+
+    <div class="page-heading">
+      <h1>My Shopping Cart 🛒</h1>
+      <p>Review your items before continuing to checkout.</p>
+    </div>
+
+    <div class="cart-layout">
+      <section class="cart-panel">
+        <div class="panel-heading">
+          <h2>Your Items</h2>
+          <span class="item-count" id="item-count">0 items</span>
+        </div>
+
+        <div id="cart-items"></div>
+
+        <div class="empty-cart" id="empty-cart" hidden>
+          <div class="empty-icon">🛍️</div>
+          <h2>Your cart is empty</h2>
+          <p>Looks like you haven't added anything yet.</p>
+          <a class="btn btn-primary" href="shop.html">Explore Products →</a>
+        </div>
+      </section>
+
+      <aside class="summary-panel" id="order-summary">
+        <h2>Order Summary</h2>
+
+        <div class="summary-row">
+          <span>Items subtotal</span>
+          <strong id="subtotal">₹0</strong>
+        </div>
+        <div class="summary-row">
+          <span>Delivery charges</span>
+          <strong id="delivery-charge">To be confirmed</strong>
+        </div>
+        <div class="summary-row">
+          <span>Payment method</span>
+          <strong>Cash on Delivery</strong>
+        </div>
+        <div class="summary-row total">
+          <span>Estimated total</span>
+          <strong id="grand-total">₹0</strong>
+        </div>
+
+        <div class="delivery-note">
+          📍 Delivery is limited to selected localities in Pilkhuwa and Hapur. The final delivery charge and availability must be confirmed before an order is accepted.
+        </div>
+
+        <div class="cod-note">
+          💵 <strong>Cash on Delivery</strong><br>
+          Pay in cash only after your order has been confirmed and delivered.
+        </div>
+
+        <a class="btn btn-primary checkout-button" id="checkout-button" href="checkout.html">Proceed to Checkout →</a>
+        <a class="continue-link" href="shop.html">← Continue Shopping</a>
+        <p class="secure-note">Your order is not placed until the store confirms it.</p>
+      </aside>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <div>
+        <strong>Cash Deliver</strong>
+        <p>Apki Local Shopping, Aapke Darwaze Tak.</p>
+      </div>
+      <nav class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="shop.html">Shop</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script>
+    const CART_KEY = "cashDeliverCart";
+
+    const fallbackProducts = {
+      1: { id: 1, name: "Kitchen Sink Organizer", price: 199, category: "kitchen", emoji: "🍽️" },
+      2: { id: 2, name: "Multipurpose Storage Box", price: 249, category: "storage", emoji: "🗃️" },
+      3: { id: 3, name: "Microfiber Cleaning Cloths", price: 129, category: "cleaning", emoji: "🧽" },
+      4: { id: 4, name: "Bathroom Soap Holder", price: 99, category: "bathroom", emoji: "🧼" },
+      5: { id: 5, name: "Drawer Organizer Set", price: 179, category: "storage", emoji: "🧺" },
+      6: { id: 6, name: "Cleaning Brush", price: 89, category: "cleaning", emoji: "🪥" },
+      7: { id: 7, name: "Kitchen Storage Rack", price: 299, category: "kitchen", emoji: "🥣" },
+      8: { id: 8, name: "Multipurpose Hooks", price: 79, category: "home", emoji: "🪝" },
+      9: { id: 9, name: "Foldable Storage Basket", price: 229, category: "storage", emoji: "🧺" },
+      10: { id: 10, name: "Dishwashing Gloves", price: 119, category: "kitchen", emoji: "🧤" },
+      11: { id: 11, name: "Bathroom Cleaning Brush", price: 149, category: "bathroom", emoji: "🧹" },
+      12: { id: 12, name: "Reusable Cleaning Wipes", price: 99, category: "cleaning", emoji: "🧻" }
+    };
+
+    function readCart() {
+      try {
+        const raw = JSON.parse(localStorage.getItem(CART_KEY) || "[]");
+        if (!Array.isArray(raw)) return [];
+
+        // Rebuild each item from the local catalogue so malformed stored values
+        // do not create unexpected HTML or invalid quantities on this page.
+        return raw.map(item => {
+          const product = fallbackProducts[Number(item.id)];
+          if (!product) return null;
+          const quantity = Math.max(1, Math.min(20, Math.floor(Number(item.quantity) || 1)));
+          return { ...product, quantity };
+        }).filter(Boolean);
+      } catch {
+        return [];
+      }
+    }
+
+    function saveCart(cart) {
+      localStorage.setItem(CART_KEY, JSON.stringify(cart));
+      updateCartCount(cart);
+      renderCart(cart);
+    }
+
+    function money(amount) {
+      return "₹" + Number(amount).toLocaleString("en-IN");
+    }
+
+    function updateCartCount(cart = readCart()) {
+      const count = cart.reduce((sum, item) => sum + item.quantity, 0);
+      document.getElementById("cart-count").textContent = count;
+    }
+
+    function renderCart(cart = readCart()) {
+      const container = document.getElementById("cart-items");
+      const empty = document.getElementById("empty-cart");
+      const summary = document.getElementById("order-summary");
+      const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+      const subtotal = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+
+      document.getElementById("item-count").textContent =
+        totalItems + (totalItems === 1 ? " item" : " items");
+
+      if (!cart.length) {
+        container.innerHTML = "";
+        empty.hidden = false;
+        summary.style.opacity = "0.65";
+        document.getElementById("subtotal").textContent = money(0);
+        document.getElementById("grand-total").textContent = money(0);
+        document.getElementById("delivery-charge").textContent = "To be confirmed";
+        document.getElementById("checkout-button").setAttribute("aria-disabled", "true");
+        document.getElementById("checkout-button").style.pointerEvents = "none";
+        document.getElementById("checkout-button").style.opacity = ".5";
+        return;
+      }
+
+      empty.hidden = true;
+      summary.style.opacity = "1";
+      document.getElementById("checkout-button").removeAttribute("aria-disabled");
+      document.getElementById("checkout-button").style.pointerEvents = "auto";
+      document.getElementById("checkout-button").style.opacity = "1";
+
+      container.innerHTML = cart.map(item => `
+        <article class="cart-item">
+          <div class="item-image" aria-hidden="true">${item.emoji}</div>
+          <div>
+            <div class="item-category">${item.category}</div>
+            <h3 class="item-name">${item.name}</h3>
+            <div class="item-price">${money(item.price)} each</div>
+            <div class="quantity-row">
+              <div class="quantity-control" aria-label="Quantity">
+                <button type="button" data-action="decrease" data-id="${item.id}" aria-label="Decrease quantity" ${item.quantity <= 1 ? "disabled" : ""}>−</button>
+                <span class="quantity-value">${item.quantity}</span>
+                <button type="button" data-action="increase" data-id="${item.id}" aria-label="Increase quantity" ${item.quantity >= 20 ? "disabled" : ""}>+</button>
+              </div>
+              <button class="remove-button" type="button" data-action="remove" data-id="${item.id}">Remove</button>
+            </div>
+          </div>
+          <div class="item-total">${money(item.price * item.quantity)}</div>
+        </article>
+      `).join("");
+
+      document.getElementById("subtotal").textContent = money(subtotal);
+      document.getElementById("grand-total").textContent = money(subtotal);
+      document.getElementById("delivery-charge").textContent = "To be confirmed";
+    }
+
+    document.getElementById("cart-items").addEventListener("click", event => {
+      const button = event.target.closest("button[data-action]");
+      if (!button) return;
+
+      const id = Number(button.dataset.id);
+      const action = button.dataset.action;
+      const cart = readCart();
+      const item = cart.find(product => product.id === id);
+      if (!item) return;
+
+      if (action === "increase" && item.quantity < 20) item.quantity++;
+      if (action === "decrease" && item.quantity > 1) item.quantity--;
+      if (action === "remove") {
+        saveCart(cart.filter(product => product.id !== id));
+        return;
+      }
+
+      saveCart(cart);
+    });
+
+    // Prevent checkout when there are no items.
+    document.getElementById("checkout-button").addEventListener("click", event => {
+      if (!readCart().length) {
+        event.preventDefault();
+        alert("Your cart is empty. Please add a product first.");
+      }
+    });
+
+    updateCartCount();
+    renderCart();
+  </script>
+</body>
+</html>
+```

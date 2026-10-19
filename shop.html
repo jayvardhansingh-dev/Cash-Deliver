@@ -1,0 +1,192 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#155eef">
+  <meta name="description" content="Browse everyday household essentials at Cash Deliver.">
+  <title>Shop Products | Cash Deliver</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --blue: #155eef;
+      --dark: #0b3180;
+      --orange: #ffab36;
+      --text: #172033;
+      --muted: #697386;
+      --bg: #f6f8fd;
+      --border: #e7ebf3;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: Inter, Arial, sans-serif; background: var(--bg); color: var(--text); }
+    a { color: inherit; text-decoration: none; }
+    button, input, select { font: inherit; }
+    button { cursor: pointer; }
+    .container { width: min(1200px, calc(100% - 32px)); margin: auto; }
+    .announcement { padding: 8px 12px; background: var(--dark); color: white; text-align: center; font-size: 12px; }
+    .announcement strong { color: #ffd18b; }
+    header { background: white; box-shadow: 0 2px 12px #102d5c0c; position: sticky; top: 0; z-index: 5; }
+    .header-main { min-height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+    .brand { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+    .brand-icon { width: 44px; height: 44px; border-radius: 14px; display: grid; place-items: center; background: var(--blue); color: white; font-size: 24px; }
+    .brand-name { font-size: 22px; font-weight: 800; letter-spacing: -1px; }
+    .brand-name span { color: var(--blue); }
+    .tagline { display: block; color: var(--muted); font-size: 9px; margin-top: 2px; }
+    .header-links { display: flex; align-items: center; gap: 22px; font-size: 13px; font-weight: 600; }
+    .header-links a:hover { color: var(--blue); }
+    .cart-count { display: inline-grid; place-items: center; min-width: 20px; height: 20px; border-radius: 20px; background: var(--orange); font-size: 11px; padding: 0 5px; }
+    .search-bar { display: flex; width: 100%; max-width: 480px; }
+    .search-bar input { min-width: 0; width: 100%; padding: 12px 14px; background: #f7f9fd; border: 1px solid var(--border); border-radius: 10px 0 0 10px; outline-color: var(--blue); font-size: 13px; }
+    .search-bar button { padding: 0 17px; border: 0; border-radius: 0 10px 10px 0; color: white; background: var(--blue); }
+    .breadcrumb { padding: 22px 0 12px; color: var(--muted); font-size: 12px; }
+    .breadcrumb a { color: var(--blue); }
+    .page-heading { display: flex; align-items: end; justify-content: space-between; gap: 15px; margin: 8px 0 22px; }
+    h1 { margin: 0; font-size: clamp(26px, 4vw, 36px); letter-spacing: -1px; }
+    .page-heading p { margin: 6px 0 0; color: var(--muted); font-size: 13px; }
+    .catalogue { display: grid; grid-template-columns: 225px 1fr; gap: 22px; padding-bottom: 50px; }
+    .sidebar, .catalogue-main { min-width: 0; }
+    .filter-box { padding: 20px; background: white; border: 1px solid var(--border); border-radius: 16px; margin-bottom: 15px; }
+    .filter-box h2 { font-size: 15px; margin: 0 0 14px; }
+    .filter-option { display: flex; align-items: center; gap: 9px; padding: 8px 0; color: #4b566b; font-size: 12px; cursor: pointer; }
+    .filter-option input { accent-color: var(--blue); }
+    .category-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px; }
+    .chip { border: 1px solid #dce4f2; background: white; border-radius: 30px; padding: 9px 14px; color: #4b566b; font-size: 12px; font-weight: 600; }
+    .chip.active, .chip:hover { border-color: var(--blue); background: #edf3ff; color: var(--blue); }
+    .catalogue-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 16px; }
+    .results-count { color: var(--muted); font-size: 12px; }
+    .sort-select { max-width: 190px; padding: 10px; border: 1px solid var(--border); border-radius: 9px; background: white; font-size: 12px; }
+    .products-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 15px; }
+    .product-card { overflow: hidden; border: 1px solid var(--border); border-radius: 15px; background: white; transition: .2s; }
+    .product-card:hover { transform: translateY(-3px); box-shadow: 0 10px 28px #173b780e; }
+    .product-image { min-height: 155px; position: relative; display: grid; place-items: center; background: #f0f4ff; font-size: 60px; }
+    .product-card:nth-child(3n + 2) .product-image { background: #fff4e4; }
+    .product-card:nth-child(3n) .product-image { background: #eaf8f1; }
+    .badge { position: absolute; top: 10px; left: 10px; border-radius: 5px; padding: 5px 7px; background: #ffebcf; color: #854a00; font-size: 9px; font-weight: 800; }
+    .product-info { padding: 13px; }
+    .category-label { color: var(--blue); font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .6px; }
+    .product-info h3 { min-height: 38px; margin: 6px 0; font-size: 13px; line-height: 1.5; }
+    .price-line { display: flex; align-items: center; gap: 7px; margin: 10px 0 12px; }
+    .price-line strong { font-size: 17px; }
+    .price-line del { color: #929bad; font-size: 11px; }
+    .add-button { width: 100%; padding: 10px; border: 1px solid #bcd0ff; border-radius: 9px; background: #edf3ff; color: var(--blue); font-size: 11px; font-weight: 800; }
+    .add-button:hover { background: var(--blue); color: white; }
+    .empty-state { display: none; padding: 50px 20px; text-align: center; border: 1px dashed #ccd5e6; border-radius: 15px; background: white; }
+    .empty-state .emoji { font-size: 42px; }
+    .empty-state h2 { font-size: 19px; }
+    .empty-state p { color: var(--muted); font-size: 13px; }
+    .sample-note { color: var(--muted); font-size: 10px; margin-top: 16px; }
+    footer { background: #091e49; color: white; padding: 30px 0; }
+    .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+    footer p { margin: 8px 0 0; color: #c0cce2; font-size: 11px; }
+    .footer-links { display: flex; gap: 18px; flex-wrap: wrap; font-size: 12px; color: #d4def1; }
+    .mobile-nav { display: none; }
+
+    @media (max-width: 900px) {
+      .header-main { flex-wrap: wrap; padding: 12px 0; }
+      .search-bar { order: 3; max-width: none; flex-basis: 100%; }
+      .catalogue { grid-template-columns: 190px 1fr; gap: 14px; }
+      .products-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .header-links { gap: 13px; }
+    }
+    @media (max-width: 600px) {
+      .container { width: calc(100% - 24px); }
+      .header-main { gap: 12px; }
+      .brand-name { font-size: 19px; }
+      .header-links { font-size: 12px; }
+      .header-links .home-text { display: none; }
+      .catalogue { grid-template-columns: 1fr; }
+      .sidebar { order: 0; }
+      .filter-box { padding: 13px; }
+      .filter-box h2 { margin-bottom: 8px; }
+      .filter-option { display: inline-flex; margin-right: 12px; }
+      .price-filter { display: none; }
+      .products-grid { gap: 10px; }
+      .product-image { min-height: 130px; font-size: 48px; }
+      .product-info { padding: 10px; }
+      .product-info h3 { font-size: 11px; }
+      .price-line strong { font-size: 15px; }
+      .catalogue-toolbar { align-items: flex-start; }
+      .sort-select { max-width: 155px; font-size: 11px; }
+      .page-heading { align-items: flex-start; }
+      .mobile-nav { position: fixed; z-index: 10; bottom: 0; left: 0; right: 0; display: grid; grid-template-columns: repeat(4, 1fr); padding: 8px 3px calc(8px + env(safe-area-inset-bottom)); border-top: 1px solid var(--border); background: #ffffffed; backdrop-filter: blur(10px); }
+      .mobile-nav a { display: grid; justify-items: center; gap: 2px; color: #596579; font-size: 9px; font-weight: 600; }
+      .mobile-nav .nav-icon { font-size: 20px; }
+      .mobile-nav .active { color: var(--blue); }
+      body { padding-bottom: 65px; }
+      .footer-inner { align-items: flex-start; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="announcement">🛍️ Local shopping made simple · <strong>Cash on Delivery</strong> · Pilkhuwa & Hapur selected areas</div>
+
+  <header>
+    <div class="container header-main">
+      <a class="brand" href="index.html">
+        <div class="brand-icon">🛒</div>
+        <div>
+          <div class="brand-name">Cash <span>Deliver</span></div>
+          <span class="tagline">Apki Local Shopping, Aapke Darwaze Tak</span>
+        </div>
+      </a>
+
+      <form class="search-bar" id="search-form">
+        <input id="search-input" type="search" placeholder="Search products..." aria-label="Search products">
+        <button type="submit" aria-label="Search">⌕</button>
+      </form>
+
+      <nav class="header-links">
+        <a class="home-text" href="index.html">⌂ Home</a>
+        <a href="cart.html">🛒 Cart <span class="cart-count" id="cart-count">0</span></a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="breadcrumb"><a href="index.html">Home</a> / Shop</div>
+
+    <div class="page-heading">
+      <div>
+        <h1>Shop All Products</h1>
+        <p>Everyday essentials for your home, all in one place.</p>
+      </div>
+    </div>
+
+    <div class="catalogue">
+      <aside class="sidebar">
+        <div class="filter-box">
+          <h2>Categories</h2>
+          <label class="filter-option"><input type="radio" name="category" value="all" checked> All Products</label>
+          <label class="filter-option"><input type="radio" name="category" value="kitchen"> Kitchen</label>
+          <label class="filter-option"><input type="radio" name="category" value="storage"> Storage</label>
+          <label class="filter-option"><input type="radio" name="category" value="cleaning"> Cleaning</label>
+          <label class="filter-option"><input type="radio" name="category" value="bathroom"> Bathroom</label>
+          <label class="filter-option"><input type="radio" name="category" value="home"> Home Utility</label>
+        </div>
+
+        <div class="filter-box price-filter">
+          <h2>Price Range</h2>
+          <label class="filter-option"><input type="radio" name="price" value="all" checked> Any price</label>
+          <label class="filter-option"><input type="radio" name="price" value="0-100"> Under ₹100</label>
+          <label class="filter-option"><input type="radio" name="price" value="100-200"> ₹100 – ₹200</label>
+          <label class="filter-option"><input type="radio" name="price" value="200-500"> ₹200 – ₹500</label>
+        </div>
+      </aside>
+
+      <section class="catalogue-main">
+        <div class="category-chips">
+          <button class="chip active" data-category="all">All</button>
+          <button class="chip" data-category="kitchen">Kitchen</button>
+          <button class="chip" data-category="storage">Storage</button>
+          <button class="chip" data-category="cleaning">Cleaning</button>
+          <button class="chip" data-category="bathroom">Bathroom</button>
+          <button class="chip" data-category="home">Home Utility</button>
+        </div>
+
+        <div class="catalogue-toolbar">
+          <span class="results-count"

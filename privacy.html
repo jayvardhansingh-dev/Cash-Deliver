@@ -1,0 +1,524 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Cash Deliver privacy policy for local shopping customers.">
+  <title>Privacy Policy | Cash Deliver</title>
+
+  <style>
+    :root {
+      --blue: #155eef;
+      --dark: #0b3180;
+      --light: #eef4ff;
+      --orange: #ffab36;
+      --text: #17233b;
+      --muted: #68758b;
+      --border: #e4eaf3;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f7f9fd;
+      color: var(--text);
+      line-height: 1.75;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .topbar {
+      padding: 9px 12px;
+      text-align: center;
+      background: var(--dark);
+      color: white;
+      font-size: 13px;
+    }
+
+    header {
+      background: white;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 5;
+    }
+
+    .navbar {
+      max-width: 1120px;
+      margin: auto;
+      min-height: 76px;
+      padding: 12px 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--dark);
+      font-size: 22px;
+      font-weight: 800;
+    }
+
+    .brand-icon {
+      width: 43px;
+      height: 43px;
+      display: grid;
+      place-items: center;
+      background: var(--blue);
+      color: white;
+      border-radius: 13px;
+      font-size: 23px;
+    }
+
+    .brand small {
+      display: block;
+      color: var(--muted);
+      font-size: 10px;
+      letter-spacing: 1px;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 19px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    nav a:hover,
+    nav a.active {
+      color: var(--blue);
+    }
+
+    .cart-link {
+      background: var(--blue);
+      color: white !important;
+      padding: 9px 14px;
+      border-radius: 9px;
+    }
+
+    .menu-btn {
+      display: none;
+      padding: 9px 12px;
+      border: none;
+      border-radius: 9px;
+      background: var(--light);
+      color: var(--dark);
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .hero {
+      background: linear-gradient(120deg, #e8f0ff, white);
+      text-align: center;
+      padding: 55px 20px 48px;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      background: #dce8ff;
+      color: var(--blue);
+      border-radius: 30px;
+      padding: 5px 13px;
+      font-size: 12px;
+      font-weight: 800;
+      margin-bottom: 13px;
+    }
+
+    .hero h1 {
+      color: var(--dark);
+      font-size: clamp(30px, 5vw, 43px);
+      line-height: 1.25;
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      max-width: 600px;
+      margin: auto;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .container {
+      max-width: 900px;
+      padding: 35px 20px 65px;
+      margin: auto;
+    }
+
+    .notice {
+      background: #fff7e9;
+      border: 1px solid #ffe0ae;
+      color: #75460c;
+      border-radius: 12px;
+      padding: 16px 18px;
+      margin-bottom: 25px;
+      font-size: 13px;
+    }
+
+    .policy-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 30px;
+      box-shadow: 0 8px 25px rgba(20, 49, 100, .04);
+    }
+
+    .policy-card h2 {
+      color: var(--dark);
+      font-size: 19px;
+      margin: 27px 0 8px;
+    }
+
+    .policy-card h2:first-child {
+      margin-top: 0;
+    }
+
+    .policy-card p,
+    .policy-card li {
+      color: #4f5e76;
+      font-size: 14px;
+    }
+
+    .policy-card ul {
+      padding-left: 22px;
+      margin: 9px 0;
+    }
+
+    .policy-card li {
+      margin: 5px 0;
+    }
+
+    .policy-card a {
+      color: var(--blue);
+      text-decoration: underline;
+    }
+
+    .last-updated {
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 25px;
+      padding-top: 18px;
+      border-top: 1px solid var(--border);
+    }
+
+    .bottom-cta {
+      background: var(--dark);
+      color: white;
+      border-radius: 17px;
+      padding: 25px;
+      margin-top: 25px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .bottom-cta p {
+      color: #d7e3ff;
+      font-size: 13px;
+    }
+
+    .bottom-cta a {
+      background: var(--orange);
+      color: var(--text);
+      padding: 10px 15px;
+      border-radius: 9px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    footer {
+      background: #081d49;
+      color: white;
+      padding: 32px 22px 18px;
+    }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    footer p,
+    footer a {
+      color: #c8d5ef;
+      font-size: 13px;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .copyright {
+      max-width: 1100px;
+      margin: 23px auto 0;
+      padding-top: 15px;
+      border-top: 1px solid rgba(255,255,255,.15);
+      font-size: 12px;
+      color: #c8d5ef;
+    }
+
+    @media (max-width: 800px) {
+      .menu-btn {
+        display: block;
+      }
+
+      nav {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+      }
+
+      nav.open {
+        display: flex;
+      }
+
+      nav a {
+        padding: 11px 4px;
+        border-top: 1px solid var(--border);
+      }
+
+      .bottom-cta {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .brand {
+        font-size: 19px;
+      }
+
+      .hero {
+        padding: 40px 16px;
+      }
+
+      .container {
+        padding: 25px 13px 45px;
+      }
+
+      .policy-card {
+        padding: 21px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="topbar">
+    Local shopping for selected areas of Pilkhuwa & Hapur · Cash on Delivery
+  </div>
+
+  <header>
+    <div class="navbar">
+      <a href="index.html" class="brand">
+        <span class="brand-icon">🛒</span>
+        <span>
+          Cash Deliver
+          <small>APKI LOCAL SHOPPING</small>
+        </span>
+      </a>
+
+      <button class="menu-btn" id="menuBtn" type="button">☰ Menu</button>
+
+      <nav id="mainNav">
+        <a href="index.html">Home</a>
+        <a href="shop.html">Shop</a>
+        <a href="about.html">About</a>
+        <a href="orders.html">My Orders</a>
+        <a href="contact.html">Contact</a>
+        <a href="cart.html" class="cart-link">🛒 My Cart</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <span class="eyebrow">YOUR PRIVACY MATTERS</span>
+    <h1>Privacy Policy</h1>
+    <p>
+      How Cash Deliver intends to collect, use, and protect information
+      when customers browse products or request local delivery.
+    </p>
+  </section>
+
+  <main class="container">
+    <div class="notice">
+      <strong>Important:</strong> This is a starter policy template for your
+      website prototype, not a legal review. Before accepting real orders,
+      replace the placeholders, confirm your actual data practices, and get
+      appropriate legal advice for your business.
+    </div>
+
+    <article class="policy-card">
+      <h2>1. About this policy</h2>
+      <p>
+        Cash Deliver is a local shopping website being developed to serve
+        selected areas of Pilkhuwa and Hapur, Uttar Pradesh, India. This
+        policy explains how personal information may be handled when the
+        service becomes operational.
+      </p>
+
+      <h2>2. Information we may collect</h2>
+      <p>When the website is connected to an order system, information may include:</p>
+      <ul>
+        <li>Your name and mobile number.</li>
+        <li>Your delivery address, locality, and delivery instructions.</li>
+        <li>Products requested, quantities, order reference, and order status.</li>
+        <li>Messages you send to customer support.</li>
+        <li>Basic technical information needed to operate and secure the website.</li>
+      </ul>
+      <p>
+        Only collect information that is reasonably necessary for the stated
+        purpose. Do not request passwords, payment card details, or unrelated
+        sensitive information through ordinary order forms.
+      </p>
+
+      <h2>3. How information may be used</h2>
+      <p>Subject to the actual service and applicable law, information may be used to:</p>
+      <ul>
+        <li>Confirm and deliver customer orders.</li>
+        <li>Contact customers about delivery availability or order changes.</li>
+        <li>Respond to customer questions, complaints, or replacement requests.</li>
+        <li>Maintain order records and help prevent fraud or misuse.</li>
+        <li>Meet applicable legal and accounting obligations.</li>
+      </ul>
+
+      <h2>4. Cash on Delivery</h2>
+      <p>
+        Cash Deliver currently plans to offer Cash on Delivery only. The
+        prototype does not process online payments. If other payment methods
+        are introduced later, this policy should be updated to describe the
+        payment provider and the information it handles.
+      </p>
+
+      <h2>5. Sharing information</h2>
+      <p>
+        Customer information should only be shared when necessary to operate
+        the service, such as with a delivery helper or technology provider,
+        or when required by law. Before launch, identify any actual providers
+        that may process customer information and explain their roles clearly.
+        Do not sell personal information.
+      </p>
+
+      <h2>6. Data storage and security</h2>
+      <p>
+        The current HTML prototype does not securely store or submit customer
+        orders to a business database. A live service should use suitable
+        security controls, restrict access to customer details, protect
+        administrator accounts, and keep information only as long as needed
+        for legitimate business or legal purposes.
+      </p>
+
+      <h2>7. Cookies and browser storage</h2>
+      <p>
+        The website may use browser storage for features such as a shopping
+        cart. Browser storage is not the same as a secure order database and
+        should not be used to store sensitive customer information. Any
+        additional analytics or tracking tools should be disclosed before use.
+      </p>
+
+      <h2>8. Information retention</h2>
+      <p>
+        A live business should establish a reasonable retention period based
+        on fulfilment, customer support, accounting, dispute resolution, and
+        applicable legal requirements. Information that is no longer needed
+        should be securely deleted or anonymised where appropriate.
+      </p>
+
+      <h2>9. Your choices and requests</h2>
+      <p>
+        Customers should have a clear way to ask about their information,
+        request correction of inaccurate details, or raise a privacy concern.
+        Requests will be handled in accordance with applicable law. Add a
+        verified contact method before publishing this policy.
+      </p>
+
+      <h2>10. Children's privacy</h2>
+      <p>
+        The service is intended for ordinary household shopping. A live
+        service should not knowingly collect children's personal information
+        except as permitted by applicable law and with any required safeguards.
+      </p>
+
+      <h2>11. Changes to this policy</h2>
+      <p>
+        This policy may need to change when the website adds an order database,
+        messaging integration, analytics, new payment methods, or delivery
+        partners. Publish the revised policy and its effective date whenever
+        material changes are made.
+      </p>
+
+      <h2>12. Contact for privacy questions</h2>
+      <p>
+        Before launch, add your business's verified support email or postal
+        contact details here. Do not publish personal contact information
+        unless you intend to use it for customer support.
+      </p>
+
+      <div class="last-updated">
+        Template status: Draft for website development. Review and update this
+        policy before accepting real customer information.
+      </div>
+    </article>
+
+    <section class="bottom-cta">
+      <div>
+        <strong>Have a question?</strong>
+        <p>Visit our contact page for customer-support information.</p>
+      </div>
+      <a href="contact.html">Contact Us →</a>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div>
+        <h3>Cash Deliver 🛒</h3>
+        <p>Apki Local Shopping, Apke Darwaze Tak.</p>
+      </div>
+
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="shop.html">Shop</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="privacy.html">Privacy Policy</a>
+      </div>
+    </div>
+
+    <div class="copyright">
+      © <span id="year"></span> Cash Deliver. All rights reserved.
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("menuBtn").addEventListener("click", () => {
+      document.getElementById("mainNav").classList.toggle("open");
+    });
+
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+  </script>
+</body>
+</html>

@@ -1,0 +1,513 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Terms and conditions for Cash Deliver local shopping.">
+  <title>Terms & Conditions | Cash Deliver</title>
+
+  <style>
+    :root {
+      --blue: #155eef;
+      --dark: #0b3180;
+      --light: #eef4ff;
+      --orange: #ffab36;
+      --text: #17233b;
+      --muted: #68758b;
+      --border: #e4eaf3;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f7f9fd;
+      color: var(--text);
+      line-height: 1.75;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .topbar {
+      background: var(--dark);
+      color: white;
+      text-align: center;
+      padding: 9px 12px;
+      font-size: 13px;
+    }
+
+    header {
+      background: white;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 5;
+    }
+
+    .navbar {
+      max-width: 1120px;
+      margin: auto;
+      min-height: 76px;
+      padding: 12px 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 18px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--dark);
+      font-size: 22px;
+      font-weight: 800;
+    }
+
+    .brand-icon {
+      width: 43px;
+      height: 43px;
+      display: grid;
+      place-items: center;
+      background: var(--blue);
+      color: white;
+      border-radius: 13px;
+      font-size: 23px;
+    }
+
+    .brand small {
+      display: block;
+      color: var(--muted);
+      font-size: 10px;
+      letter-spacing: 1px;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 19px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    nav a:hover,
+    nav a.active {
+      color: var(--blue);
+    }
+
+    .cart-link {
+      background: var(--blue);
+      color: white !important;
+      padding: 9px 14px;
+      border-radius: 9px;
+    }
+
+    .menu-btn {
+      display: none;
+      padding: 9px 12px;
+      border: none;
+      border-radius: 9px;
+      background: var(--light);
+      color: var(--dark);
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .hero {
+      background: linear-gradient(120deg, #e8f0ff, white);
+      text-align: center;
+      padding: 55px 20px 48px;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      background: #dce8ff;
+      color: var(--blue);
+      border-radius: 30px;
+      padding: 5px 13px;
+      font-size: 12px;
+      font-weight: 800;
+      margin-bottom: 13px;
+    }
+
+    .hero h1 {
+      color: var(--dark);
+      font-size: clamp(30px, 5vw, 43px);
+      line-height: 1.25;
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      max-width: 620px;
+      margin: auto;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .container {
+      max-width: 900px;
+      padding: 35px 20px 65px;
+      margin: auto;
+    }
+
+    .notice {
+      background: #fff7e9;
+      border: 1px solid #ffe0ae;
+      color: #75460c;
+      border-radius: 12px;
+      padding: 16px 18px;
+      margin-bottom: 25px;
+      font-size: 13px;
+    }
+
+    .terms-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 30px;
+      box-shadow: 0 8px 25px rgba(20, 49, 100, .04);
+    }
+
+    .terms-card h2 {
+      color: var(--dark);
+      font-size: 19px;
+      margin: 27px 0 8px;
+    }
+
+    .terms-card h2:first-child {
+      margin-top: 0;
+    }
+
+    .terms-card p,
+    .terms-card li {
+      color: #4f5e76;
+      font-size: 14px;
+    }
+
+    .terms-card ul {
+      padding-left: 22px;
+      margin: 9px 0;
+    }
+
+    .terms-card li {
+      margin: 5px 0;
+    }
+
+    .bottom-cta {
+      background: var(--dark);
+      color: white;
+      border-radius: 17px;
+      padding: 25px;
+      margin-top: 25px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .bottom-cta p {
+      color: #d7e3ff;
+      font-size: 13px;
+    }
+
+    .bottom-cta a {
+      background: var(--orange);
+      color: var(--text);
+      padding: 10px 15px;
+      border-radius: 9px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    footer {
+      background: #081d49;
+      color: white;
+      padding: 32px 22px 18px;
+    }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    footer p,
+    footer a {
+      color: #c8d5ef;
+      font-size: 13px;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .copyright {
+      max-width: 1100px;
+      margin: 23px auto 0;
+      padding-top: 15px;
+      border-top: 1px solid rgba(255,255,255,.15);
+      font-size: 12px;
+      color: #c8d5ef;
+    }
+
+    @media (max-width: 800px) {
+      .menu-btn {
+        display: block;
+      }
+
+      nav {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+      }
+
+      nav.open {
+        display: flex;
+      }
+
+      nav a {
+        padding: 11px 4px;
+        border-top: 1px solid var(--border);
+      }
+
+      .bottom-cta {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .brand {
+        font-size: 19px;
+      }
+
+      .hero {
+        padding: 40px 16px;
+      }
+
+      .container {
+        padding: 25px 13px 45px;
+      }
+
+      .terms-card {
+        padding: 21px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="topbar">
+    Local shopping for selected areas of Pilkhuwa & Hapur · Cash on Delivery
+  </div>
+
+  <header>
+    <div class="navbar">
+      <a href="index.html" class="brand">
+        <span class="brand-icon">🛒</span>
+        <span>
+          Cash Deliver
+          <small>APKI LOCAL SHOPPING</small>
+        </span>
+      </a>
+
+      <button class="menu-btn" id="menuBtn" type="button">☰ Menu</button>
+
+      <nav id="mainNav">
+        <a href="index.html">Home</a>
+        <a href="shop.html">Shop</a>
+        <a href="about.html">About</a>
+        <a href="orders.html">My Orders</a>
+        <a href="contact.html">Contact</a>
+        <a href="cart.html" class="cart-link">🛒 My Cart</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <span class="eyebrow">PLEASE READ BEFORE ORDERING</span>
+    <h1>Terms & Conditions</h1>
+    <p>
+      Clear information about shopping, delivery, Cash on Delivery,
+      cancellations, and customer support.
+    </p>
+  </section>
+
+  <main class="container">
+    <div class="notice">
+      <strong>Draft notice:</strong> These terms are a starter template for
+      the Cash Deliver prototype, not legal advice. Finalise your prices,
+      delivery fees, return policy, business details, and applicable legal
+      requirements before accepting real orders.
+    </div>
+
+    <article class="terms-card">
+      <h2>1. About Cash Deliver</h2>
+      <p>
+        Cash Deliver is being developed as a local shopping service intended
+        for selected areas of Pilkhuwa and Hapur, Uttar Pradesh, India.
+        Availability depends on the actual service area and product stock.
+      </p>
+
+      <h2>2. Website and product information</h2>
+      <p>
+        Product descriptions, photographs, prices, and availability shown
+        during development may be illustrative examples. Before placing a
+        real order, customers should confirm the final product, price,
+        quantity, delivery charge, and expected delivery time.
+      </p>
+
+      <h2>3. Placing an order</h2>
+      <ul>
+        <li>Customers should provide accurate contact and delivery details.</li>
+        <li>Orders are subject to confirmation and product availability.</li>
+        <li>The business may contact customers to clarify an address or order detail.</li>
+        <li>An on-screen message from the current prototype is not proof that an order has been received.</li>
+      </ul>
+
+      <h2>4. Prices and delivery charges</h2>
+      <p>
+        Prices and any applicable delivery charges should be confirmed before
+        an order is accepted. The final payable amount must be communicated
+        clearly to the customer. Do not treat the prototype's sample prices
+        as verified supplier prices.
+      </p>
+
+      <h2>5. Cash on Delivery</h2>
+      <p>
+        The planned payment method is Cash on Delivery (COD). Customers pay
+        the confirmed amount when the order is delivered. The business should
+        explain in advance if exact cash, change, or any other delivery
+        condition is required.
+      </p>
+
+      <h2>6. Delivery area and timing</h2>
+      <p>
+        Delivery is intended for selected localities of Pilkhuwa and Hapur.
+        Orders outside the confirmed service area may not be accepted.
+        Delivery estimates should be provided honestly and may depend on
+        product sourcing, availability, weather, and local conditions.
+      </p>
+
+      <h2>7. Order cancellation</h2>
+      <p>
+        Customers should contact the business as soon as possible to request
+        cancellation. Because products may be sourced from suppliers after
+        an order is requested, the business should clearly communicate when
+        cancellation is still possible. Any final policy must comply with
+        applicable consumer-protection law.
+      </p>
+
+      <h2>8. Returns, replacements, and damaged items</h2>
+      <p>
+        Before launch, publish a clear policy stating how customers can report
+        a damaged, defective, incorrect, or missing product, what evidence may
+        be reasonably requested, and how returns or replacements are handled.
+        Any policy must preserve rights available under applicable law.
+      </p>
+      <ul>
+        <li>Customers should report an issue promptly through verified support details.</li>
+        <li>The business should review the complaint fairly.</li>
+        <li>Do not promise a refund or replacement process until it is operational and clearly defined.</li>
+      </ul>
+
+      <h2>9. Customer responsibilities</h2>
+      <ul>
+        <li>Provide a reachable mobile number and accurate delivery address.</li>
+        <li>Review the confirmed order details before accepting delivery.</li>
+        <li>Pay the agreed COD amount for an accepted delivery.</li>
+        <li>Use the website lawfully and avoid fraudulent or abusive requests.</li>
+      </ul>
+
+      <h2>10. Privacy</h2>
+      <p>
+        Customer information should be used only for disclosed and legitimate
+        purposes, such as order fulfilment and support. Please read our
+        <a href="privacy.html">Privacy Policy</a>. The prototype does not yet
+        provide a secure, live order-management system.
+      </p>
+
+      <h2>11. Website availability</h2>
+      <p>
+        The website is under development. Features may be incomplete, and
+        sample forms may not send or save information. Do not rely on a demo
+        screen as confirmation of a purchase or delivery booking.
+      </p>
+
+      <h2>12. Changes to these terms</h2>
+      <p>
+        These terms should be reviewed and updated when the service launches
+        or its products, delivery arrangements, payment methods, or customer
+        policies change. The published version should show when it takes effect.
+      </p>
+
+      <h2>13. Contact and complaints</h2>
+      <p>
+        Add verified business contact details and a practical complaint
+        process before accepting real orders. Do not publish invented phone
+        numbers, email addresses, or business registration details.
+      </p>
+
+      <p style="margin-top:25px; padding-top:17px; border-top:1px solid #e4eaf3; font-size:12px;">
+        Template status: Draft for development. Review the final terms for
+        your actual business operations and applicable Indian law before launch.
+      </p>
+    </article>
+
+    <section class="bottom-cta">
+      <div>
+        <strong>Still have a question?</strong>
+        <p>Visit our contact page for support information.</p>
+      </div>
+      <a href="contact.html">Contact Us →</a>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div>
+        <h3>Cash Deliver 🛒</h3>
+        <p>Apki Local Shopping, Apke Darwaze Tak.</p>
+      </div>
+
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="shop.html">Shop</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms & Conditions</a>
+      </div>
+    </div>
+
+    <div class="copyright">
+      © <span id="year"></span> Cash Deliver. All rights reserved.
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("menuBtn").addEventListener("click", () => {
+      document.getElementById("mainNav").classList.toggle("open");
+    });
+
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+  </script>
+</body>
+</html>

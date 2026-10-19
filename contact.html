@@ -1,0 +1,702 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us | Cash Deliver</title>
+  <meta name="description" content="Contact Cash Deliver for local shopping support in Pilkhuwa and Hapur.">
+
+  <style>
+    :root {
+      --blue: #155eef;
+      --dark: #0b3180;
+      --light: #eef4ff;
+      --orange: #ffab36;
+      --text: #17233b;
+      --muted: #68758b;
+      --border: #e4eaf3;
+      --white: #ffffff;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text);
+      background: #f7f9fd;
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button, input, textarea, select {
+      font: inherit;
+    }
+
+    .topbar {
+      background: var(--dark);
+      color: white;
+      text-align: center;
+      padding: 9px 12px;
+      font-size: 13px;
+    }
+
+    header {
+      background: white;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .navbar {
+      max-width: 1150px;
+      margin: auto;
+      min-height: 78px;
+      padding: 12px 22px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      font-size: 23px;
+      font-weight: 800;
+      color: var(--dark);
+      white-space: nowrap;
+    }
+
+    .brand-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      background: var(--blue);
+      color: white;
+      font-size: 24px;
+    }
+
+    .brand small {
+      display: block;
+      font-size: 10px;
+      color: var(--muted);
+      letter-spacing: 1px;
+      font-weight: 600;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    nav a:hover, nav a.active {
+      color: var(--blue);
+    }
+
+    .nav-button, .primary-btn {
+      display: inline-block;
+      background: var(--blue);
+      color: white;
+      padding: 11px 18px;
+      border-radius: 10px;
+      border: none;
+      cursor: pointer;
+      font-weight: 700;
+    }
+
+    .nav-button:hover, .primary-btn:hover {
+      background: var(--dark);
+    }
+
+    .page-hero {
+      background: linear-gradient(120deg, #eaf1ff, #ffffff);
+      padding: 58px 22px 52px;
+      text-align: center;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      color: var(--blue);
+      background: #dce8ff;
+      padding: 6px 13px;
+      border-radius: 30px;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .5px;
+      margin-bottom: 15px;
+    }
+
+    .page-hero h1 {
+      color: var(--dark);
+      font-size: clamp(30px, 5vw, 45px);
+      line-height: 1.2;
+      margin-bottom: 14px;
+    }
+
+    .page-hero p {
+      color: var(--muted);
+      max-width: 590px;
+      margin: auto;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: auto;
+      padding: 45px 22px 65px;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: .9fr 1.1fr;
+      gap: 25px;
+      align-items: start;
+    }
+
+    .panel {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 28px;
+      box-shadow: 0 8px 28px rgba(20, 49, 100, .045);
+    }
+
+    .panel h2 {
+      color: var(--dark);
+      font-size: 23px;
+      margin-bottom: 10px;
+    }
+
+    .muted {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .contact-option {
+      display: flex;
+      gap: 14px;
+      margin-top: 23px;
+      align-items: flex-start;
+    }
+
+    .option-icon {
+      flex-shrink: 0;
+      width: 45px;
+      height: 45px;
+      display: grid;
+      place-items: center;
+      background: var(--light);
+      border-radius: 13px;
+      font-size: 21px;
+    }
+
+    .contact-option h3 {
+      font-size: 15px;
+      margin-bottom: 3px;
+    }
+
+    .contact-option p {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .notice {
+      background: #fff7e9;
+      border: 1px solid #ffe0ae;
+      border-radius: 12px;
+      padding: 13px 15px;
+      margin-top: 24px;
+      color: #7b4a0c;
+      font-size: 13px;
+    }
+
+    .form-group {
+      margin-top: 17px;
+    }
+
+    label {
+      display: block;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 7px;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 12px 13px;
+      border: 1px solid #dce3ef;
+      border-radius: 10px;
+      outline: none;
+      background: white;
+      color: var(--text);
+    }
+
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(21, 94, 239, .09);
+    }
+
+    textarea {
+      min-height: 125px;
+      resize: vertical;
+    }
+
+    .form-submit {
+      width: 100%;
+      margin-top: 20px;
+      padding: 13px;
+    }
+
+    .form-status {
+      margin-top: 14px;
+      font-size: 13px;
+      color: var(--dark);
+    }
+
+    .faq-section {
+      margin-top: 55px;
+    }
+
+    .section-heading {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    .section-heading h2 {
+      font-size: 29px;
+      color: var(--dark);
+      margin-bottom: 7px;
+    }
+
+    .faq-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+    }
+
+    details {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 13px;
+      padding: 18px;
+    }
+
+    summary {
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 14px;
+      color: var(--dark);
+    }
+
+    details p {
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 12px;
+    }
+
+    .bottom-cta {
+      margin-top: 45px;
+      padding: 30px;
+      border-radius: 20px;
+      background: var(--dark);
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .bottom-cta h2 {
+      font-size: 23px;
+      margin-bottom: 5px;
+    }
+
+    .bottom-cta p {
+      color: #d7e3ff;
+      font-size: 14px;
+    }
+
+    .bottom-cta a {
+      background: var(--orange);
+      color: #17233b;
+      padding: 12px 18px;
+      border-radius: 10px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    footer {
+      background: #081d49;
+      color: white;
+      padding: 35px 22px 20px;
+    }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 22px;
+    }
+
+    footer p, footer a {
+      color: #c8d5ef;
+      font-size: 13px;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .copyright {
+      max-width: 1100px;
+      margin: 25px auto 0;
+      padding-top: 17px;
+      border-top: 1px solid rgba(255,255,255,.14);
+      color: #c8d5ef;
+      font-size: 12px;
+    }
+
+    .mobile-menu {
+      display: none;
+      background: var(--light);
+      border: none;
+      border-radius: 9px;
+      padding: 9px 12px;
+      color: var(--dark);
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    @media (max-width: 800px) {
+      .navbar {
+        flex-wrap: wrap;
+      }
+
+      .mobile-menu {
+        display: block;
+      }
+
+      nav {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        padding-top: 10px;
+      }
+
+      nav.open {
+        display: flex;
+      }
+
+      nav a {
+        padding: 11px 4px;
+        border-top: 1px solid var(--border);
+      }
+
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .faq-list {
+        grid-template-columns: 1fr;
+      }
+
+      .bottom-cta {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .brand {
+        font-size: 19px;
+      }
+
+      .brand-icon {
+        width: 39px;
+        height: 39px;
+      }
+
+      .container {
+        padding: 30px 15px 45px;
+      }
+
+      .panel {
+        padding: 21px;
+      }
+
+      .page-hero {
+        padding: 42px 17px;
+      }
+
+      .bottom-cta {
+        padding: 23px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="topbar">
+    Local shopping for selected areas of Pilkhuwa & Hapur · Cash on Delivery
+  </div>
+
+  <header>
+    <div class="navbar">
+      <a href="index.html" class="brand">
+        <span class="brand-icon">🛒</span>
+        <span>
+          Cash Deliver
+          <small>APKI LOCAL SHOPPING</small>
+        </span>
+      </a>
+
+      <button class="mobile-menu" id="menuBtn" type="button">☰ Menu</button>
+
+      <nav id="mainNav">
+        <a href="index.html">Home</a>
+        <a href="shop.html">Shop</a>
+        <a href="about.html">About</a>
+        <a href="orders.html">My Orders</a>
+        <a href="contact.html" class="active">Contact</a>
+        <a href="cart.html" class="nav-button">🛒 My Cart</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="page-hero">
+    <span class="eyebrow">WE'RE HERE TO HELP</span>
+    <h1>Let's talk.</h1>
+    <p>
+      Have a question about a product, delivery area, or an order?
+      We're building a more convenient local shopping experience for you.
+    </p>
+  </section>
+
+  <main class="container">
+    <div class="contact-grid">
+      <section class="panel">
+        <h2>Contact information</h2>
+        <p class="muted">
+          Our service is planned for selected areas of Pilkhuwa and Hapur.
+          Please confirm availability before placing a real order.
+        </p>
+
+        <div class="contact-option">
+          <div class="option-icon">📍</div>
+          <div>
+            <h3>Service area</h3>
+            <p>Pilkhuwa and selected areas of Hapur, Uttar Pradesh</p>
+          </div>
+        </div>
+
+        <div class="contact-option">
+          <div class="option-icon">💵</div>
+          <div>
+            <h3>Payment method</h3>
+            <p>Cash on Delivery only</p>
+          </div>
+        </div>
+
+        <div class="contact-option">
+          <div class="option-icon">📦</div>
+          <div>
+            <h3>Order support</h3>
+            <p>Keep your order reference ready when asking about an order.</p>
+          </div>
+        </div>
+
+        <div class="contact-option">
+          <div class="option-icon">💬</div>
+          <div>
+            <h3>WhatsApp support</h3>
+            <p>Add your official business WhatsApp number before launch.</p>
+          </div>
+        </div>
+
+        <div class="notice">
+          <strong>Before launch:</strong> Add your real business phone number,
+          WhatsApp link, and support email here. No contact details have been
+          invented for this demo.
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>Send us a message</h2>
+        <p class="muted">
+          Use this sample form layout to see how customer enquiries will look.
+        </p>
+
+        <form id="contactForm">
+          <div class="form-group">
+            <label for="name">Your name</label>
+            <input id="name" name="name" type="text"
+              placeholder="Enter your full name" required>
+          </div>
+
+          <div class="form-group">
+            <label for="phone">Mobile number</label>
+            <input id="phone" name="phone" type="tel"
+              inputmode="numeric" pattern="[6-9][0-9]{9}"
+              maxlength="10" placeholder="10-digit mobile number" required>
+          </div>
+
+          <div class="form-group">
+            <label for="topic">What do you need help with?</label>
+            <select id="topic" name="topic" required>
+              <option value="">Select a topic</option>
+              <option>Product enquiry</option>
+              <option>Delivery availability</option>
+              <option>Existing order</option>
+              <option>Return or damaged product</option>
+              <option>Other question</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="message">Your message</label>
+            <textarea id="message" name="message"
+              placeholder="Write your question here..." required></textarea>
+          </div>
+
+          <button type="submit" class="primary-btn form-submit">
+            Send enquiry →
+          </button>
+
+          <p class="form-status" id="formStatus" role="status"></p>
+        </form>
+      </section>
+    </div>
+
+    <section class="faq-section">
+      <div class="section-heading">
+        <span class="eyebrow">QUICK ANSWERS</span>
+        <h2>Frequently asked questions</h2>
+        <p class="muted">A few things you may want to know.</p>
+      </div>
+
+      <div class="faq-list">
+        <details>
+          <summary>Where does Cash Deliver provide delivery?</summary>
+          <p>
+            The intended service area is selected localities in Pilkhuwa and
+            Hapur. Confirm that your exact locality is serviceable before
+            accepting an order.
+          </p>
+        </details>
+
+        <details>
+          <summary>Which payment method do you accept?</summary>
+          <p>
+            The planned payment method is Cash on Delivery. Pay in cash when
+            your order is delivered.
+          </p>
+        </details>
+
+        <details>
+          <summary>How can I ask about a product?</summary>
+          <p>
+            Use the enquiry form as a design preview. It must be connected to
+            a backend or a real support channel before messages can reach you.
+          </p>
+        </details>
+
+        <details>
+          <summary>Can I track my order online?</summary>
+          <p>
+            The current website is a prototype. Live tracking will only work
+            after order storage and status updates are connected to a backend.
+          </p>
+        </details>
+
+        <details>
+          <summary>Are all displayed products available?</summary>
+          <p>
+            Product listings and prices are examples for the prototype.
+            Confirm stock, supplier pricing, and delivery charges before
+            accepting customer orders.
+          </p>
+        </details>
+
+        <details>
+          <summary>What if my product arrives damaged?</summary>
+          <p>
+            Contact the business using its verified support details once those
+            are published. Decide and clearly publish a return or replacement
+            policy before taking real orders.
+          </p>
+        </details>
+      </div>
+    </section>
+
+    <section class="bottom-cta">
+      <div>
+        <h2>Need something for your home?</h2>
+        <p>Explore our sample catalogue of everyday household essentials.</p>
+      </div>
+      <a href="shop.html">Explore the shop →</a>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div>
+        <h3>Cash Deliver 🛒</h3>
+        <p>Apki Local Shopping, Apke Darwaze Tak.</p>
+      </div>
+
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="shop.html">Shop</a>
+        <a href="about.html">About Us</a>
+        <a href="orders.html">My Orders</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+
+    <div class="copyright">
+      © <span id="year"></span> Cash Deliver. All rights reserved.
+      <br>Local delivery is subject to service-area confirmation.
+    </div>
+  </footer>
+
+  <script>
+    const menuBtn = document.getElementById("menuBtn");
+    const mainNav = document.getElementById("mainNav");
+
+    menuBtn.addEventListener("click", () => {
+      mainNav.classList.toggle("open");
+    });
+
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+
+    document.getElementById("contactForm").addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      document.getElementById("formStatus").textContent =
+        "Demo only: your message has NOT been sent or saved. Connect a backend or verified support channel before launch.";
+    });
+  </script>
+</body>
+</html>
